@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(password.isEmpty() || password.length()<6){
             inputPassword.setError("Enter Proper Password");
-        }else if(password.equals(ConfirmPassword)){
+        }else if(!password.equals(ConfirmPassword)){
             inputConfirmPassword.setError("Password Doesn't Match");
         }else {
             progressDialog.setMessage("Please Wait, Registration. . .");
@@ -89,11 +89,11 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful())
                     {
                         progressDialog.dismiss();
+                        sendUserToNextActivity();
                         Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                     }else{
                         progressDialog.dismiss();
-                        sendUserToNextActivity();
-                        Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Something is wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity() {
-        Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+        Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

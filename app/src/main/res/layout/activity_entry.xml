@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EntryActivity"
+    android:background="@drawable/bluegrad">
+
+    <ImageView
+        android:id="@+id/quiz"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:rotationY="34"
+        app:layout_constraintBottom_toTopOf="@+id/Welcome"
+        app:layout_constraintEnd_toStartOf="@+id/global"
+        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/think"
+        app:srcCompat="@drawable/quiz"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/think"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:rotation="-9"
+        android:rotationY="-17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117"
+        app:srcCompat="@drawable/think"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/global"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:rotation="26"
+        android:rotationY="-17"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/think"
+        app:srcCompat="@drawable/global"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textColor="#DEB887"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/extraLogin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <Button
+        android:id="@+id/extraRegister"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extraLogin"
+        app:layout_constraintVertical_bias="0.629" />
+
+    <TextView
+        android:id="@+id/Or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OR"
+        android:textColor="#DEB887"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/extraRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extraLogin"
+        app:layout_constraintVertical_bias="0.75" />
+</androidx.constraintlayout.widget.ConstraintLayout>
