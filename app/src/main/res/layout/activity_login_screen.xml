@@ -158,66 +158,24 @@
                 app:layout_constraintTop_toTopOf="@+id/textView4"
                 app:layout_constraintVertical_bias="0.529" />
 
-            <ImageView
-                android:id="@+id/btnGoogle"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPhone"
-                app:layout_constraintEnd_toStartOf="@+id/btnInsta"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnPhone"
-                app:srcCompat="@drawable/google" />
-
-            <ImageView
-                android:id="@+id/btnInsta"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPhone"
-                app:layout_constraintEnd_toStartOf="@+id/btnPhone"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnGoogle"
-                app:layout_constraintTop_toTopOf="@+id/btnPhone"
-                app:srcCompat="@drawable/insta" />
-
-            <ImageView
-                android:id="@+id/btnPhone"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnGithub"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnInsta"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:srcCompat="@drawable/phone" />
-
-            <ImageView
-                android:id="@+id/btnGithub"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPhone"
-                app:layout_constraintEnd_toStartOf="@+id/btnTwitter"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnPhone"
-                app:layout_constraintTop_toTopOf="@+id/btnPhone"
-                app:srcCompat="@drawable/github" />
-
-            <ImageView
-                android:id="@+id/btnTwitter"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPhone"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/google_signin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingVertical="15dp"
+                android:text="Continue with Google"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/google_2"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTintMode="multiply"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnGithub"
-                app:layout_constraintTop_toTopOf="@+id/btnPhone"
-                app:srcCompat="@drawable/twitter" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:ignore="MissingConstraints" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

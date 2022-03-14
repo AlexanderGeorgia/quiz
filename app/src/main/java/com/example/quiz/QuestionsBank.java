@@ -1,17 +1,23 @@
 package com.example.quiz;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.ArrayList;
 
 public class QuestionsBank {
-
+    DatabaseReference questionRef;
 
     private static ArrayList<QuestionsList> javaQuestions() {
+
 
         final ArrayList<QuestionsList> questionsLists = new ArrayList<>();
 
         //create object of QuestionList class and pass a question along with option and answer
-        final QuestionsList question1 = new QuestionsList("qwerty","1","2", "3", "4","1","");
+        final QuestionsList question1 = new QuestionsList("qwerty","1","2",
+                "3", "4","1","");
         final QuestionsList question2 = new QuestionsList("qwerty","1","2", "3", "4","1","");
         final QuestionsList question3 = new QuestionsList("qwerty","1","2", "3", "4","1","");
         final QuestionsList question4 = new QuestionsList("qwerty","1","2", "3", "4","1","");
@@ -38,6 +44,16 @@ public class QuestionsBank {
         return questionsLists;
 
 
+    }
+
+    public void addQuestionToDatabase(String email){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        User user = new User(email, uid, "");
+
+        userRef = FirebaseDatabase.getInstance().getReference("Users").push();
+        user.setKey( userRef.getKey());
+
+        userRef.setValue(user);
     }
 
     private static ArrayList<QuestionsList> phpQuestions() {

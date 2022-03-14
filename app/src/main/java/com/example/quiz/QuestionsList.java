@@ -3,16 +3,17 @@ package com.example.quiz;
 public class QuestionsList {
 
     private String question, option1, option2, option3, option4, answer;
-    private String userSelectedAnswer;
+    private String question_key;
 
-    public QuestionsList(String question, String option1, String option2, String option3, String option4, String answer, String userSelectedAnswer) {
+    public QuestionsList(String question, String option1, String option2, String option3,
+                         String option4, String answer, String question_key) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
         this.answer = answer;
-        this.userSelectedAnswer = userSelectedAnswer;
+        this.question_key = question_key;
     }
 
     public String getQuestion() {
@@ -39,11 +40,11 @@ public class QuestionsList {
         return answer;
     }
 
-    public String getUserSelectedAnswer() {
-        return userSelectedAnswer;
+    public String getQuestion_key() {
+        return question_key;
     }
 
-    public void setUserSelectedAnswer(String userSelectedAnswer) {
-        this.userSelectedAnswer = userSelectedAnswer;
+    public void setQuestion_key(String question_key) {
+        this.question_key = question_key;
     }
 }

@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
+    DatabaseReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +113,15 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    public void addUserToDatabase(String email){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        User user = new User(email, uid, "");
 
+        userRef = FirebaseDatabase.getInstance().getReference("Users").push();
+        user.setKey( userRef.getKey());
+
+        userRef.setValue(user);
+    }
 
     private boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
