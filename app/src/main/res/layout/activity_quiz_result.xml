@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="50dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/congrats"/>
+        android:src="@drawable/congrats" />
 
     <TextView
         android:id="@+id/successTextView"
@@ -54,19 +54,34 @@
             android:textStyle="bold"
             android:textColor="#DD2C00"
             android:layout_marginTop="5dp"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startNewQuizBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Start new Quiz"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/round_back_green20"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_back_green20"
+        android:text="Start new Quiz"
+        android:textColor="#FFFFFF" />
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/seeResultsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_back_blue20"
+        android:text="Results"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>
