@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +13,16 @@
         android:padding="10dp"
         tools:context=".MainActivity">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="end|top"
+            android:background="@drawable/round_back_blue20"/>
 
         <ImageView
             android:id="@+id/quizicon"
@@ -21,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="20dp"
             android:src="@drawable/quizicon" />
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/ThemeOverlay.AppCompat.Dark"
+    android:padding="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    android:gravity="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#0D1F6BB8" >
+
+        <TextView
+            android:id="@+id/questions"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_back_white10"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="1/10"
+            android:textColor="#1F6BB8"/>
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_back_light_yellow10"
+            android:layout_gravity="center"
+            android:minHeight="100dp"
+            android:text="Question will come here. . ."
+            android:padding="20dp"
+            android:textColor="#CC000000"
+            android:textSize="16sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/option1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="Option 1"
+            android:textAllCaps="false"
+            android:textColor="#1F6BB8"
+            android:background="@drawable/round_back_white_stroke2_10"
+            android:layout_marginEnd="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/option2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Option 2"
+            android:textAllCaps="false"
+            android:textColor="#1F6BB8"
+            android:background="@drawable/round_back_white_stroke2_10"
+            android:layout_marginEnd="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/option3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Option 3"
+            android:textAllCaps="false"
+            android:textColor="#1F6BB8"
+            android:background="@drawable/round_back_white_stroke2_10"
+            android:layout_marginEnd="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/option4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Option 4"
+            android:textAllCaps="false"
+            android:textColor="#1F6BB8"
+            android:background="@drawable/round_back_white_stroke2_10"
+            android:layout_marginEnd="20dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

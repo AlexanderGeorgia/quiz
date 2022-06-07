@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1395" />
+        <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1395" />
+        <entry key="app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.18055555555555555" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/input_bg.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/round.xml" value="0.18055555555555555" />
+        <entry key="app/src/main/res/drawable/round_back_blue20.xml" value="0.1395" />
         <entry key="app/src/main/res/drawable/round_back_green10.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/drawable/round_back_green20.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/drawable/round_back_light_yellow10.xml" value="0.17222222222222222" />
@@ -15,20 +20,30 @@
         <entry key="app/src/main/res/drawable/round_back_white10.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/drawable/round_back_white_stroke10.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/drawable/round_back_white_stroke2_10.xml" value="0.17222222222222222" />
+        <entry key="app/src/main/res/font/aldrich.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/layout/activity_create_question.xml" value="0.268018018018018" />
         <entry key="app/src/main/res/layout/activity_entry.xml" value="0.27546296296296297" />
+        <entry key="app/src/main/res/layout/activity_example_player.xml" value="0.27546296296296297" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.26296296296296295" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.27546296296296297" />
-        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.39409127756782963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_questions_bank.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/activity_quiz_result.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.27546296296296297" />
+        <entry key="app/src/main/res/layout/activity_see_questions.xml" value="0.268018018018018" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/activity_splash_screen2.xml" value="0.27546296296296297" />
+        <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.268018018018018" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.27546296296296297" />
         <entry key="app/src/main/res/layout/fragment_third.xml" value="0.27546296296296297" />
+        <entry key="app/src/main/res/layout/quiz_layout.xml" value="0.2644444444444444" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.271689497716895" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1395" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1395" />
       </map>
     </option>
   </component>

@@ -19,8 +19,8 @@ public class CreateQuestionActivity extends AppCompatActivity {
     FloatingActionButton fab;
     DatabaseReference qustRef;
     Spinner spinner;
-    String[] question_types = { Question_Type_Enum.Java, Question_Type_Enum.Php,
-            Question_Type_Enum.Sql, Question_Type_Enum.Android, Question_Type_Enum.Html};
+    String[] question_types = {QuestionType.JAVA.toString(), QuestionType.PHP.toString(),
+            QuestionType.HTML.toString(), QuestionType.ANDROID.toString()};
     ArrayAdapter<String> spinner_adapter;
 
     @Override
@@ -74,7 +74,7 @@ public class CreateQuestionActivity extends AppCompatActivity {
             }
         });
 
-}
+    }
 
     private void alexInit() {
         et_quest_text = findViewById(R.id.et_add_qst_text);

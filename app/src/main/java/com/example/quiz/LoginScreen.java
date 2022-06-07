@@ -4,10 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +29,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginScreen extends AppCompatActivity {
 
     TextView createNewAccount;
-    ImageView btnGoogle;
-    ImageView btnInsta;
-    ImageView btnPhone;
-    ImageView btnGithub;
-    ImageView btnTwitter;
     TextView forgotPassword;
 
     private final int RC_SIGN_IN = 1;
@@ -49,8 +42,6 @@ public class LoginScreen extends AppCompatActivity {
     FirebaseUser mUser;
 
     GoogleSignInClient googleSignInClient;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,29 +58,11 @@ public class LoginScreen extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
 
         forgotPassword = findViewById(R.id.forgotPassword);
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginScreen.this, ForgotPassword.class));
-            }
-        });
+        forgotPassword.setOnClickListener(view -> startActivity(new Intent(LoginScreen.this, ForgotPassword.class)));
 
+        createNewAccount.setOnClickListener(view -> startActivity(new Intent(LoginScreen.this, RegisterActivity.class)));
 
-
-        createNewAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginScreen.this, RegisterActivity.class));
-            }
-        });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                perforLogin();
-
-            }
-        });
+        btnLogin.setOnClickListener(view -> performLogin());
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
@@ -98,17 +71,11 @@ public class LoginScreen extends AppCompatActivity {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
-
+        google.setOnClickListener(view -> signIn());
 
     }
 
-    private void perforLogin() {
+    private void performLogin() {
 
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
@@ -140,7 +107,7 @@ public class LoginScreen extends AppCompatActivity {
     }
     private void sendUserToNextActivity() {
         Intent intent = new Intent(LoginScreen.this,MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

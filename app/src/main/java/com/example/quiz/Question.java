@@ -1,6 +1,12 @@
 package com.example.quiz;
 
-public class Question {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Question implements Parcelable {
+
     private String question_type;
     private String question, option1, option2, option3, option4, correctAnswer, answer;
     private String question_key;
@@ -39,6 +45,30 @@ public class Question {
         this.correctAnswer = correctAnswer;
         this.question_key = question_key;
     }
+
+    protected Question(Parcel in) {
+        question_type = in.readString();
+        question = in.readString();
+        option1 = in.readString();
+        option2 = in.readString();
+        option3 = in.readString();
+        option4 = in.readString();
+        correctAnswer = in.readString();
+        answer = in.readString();
+        question_key = in.readString();
+    }
+
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
 
     public String getQuestion() {
         return question;
@@ -110,5 +140,39 @@ public class Question {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(question_type);
+        dest.writeString(question);
+        dest.writeString(option1);
+        dest.writeString(option2);
+        dest.writeString(option3);
+        dest.writeString(option4);
+        dest.writeString(correctAnswer);
+        dest.writeString(answer);
+        dest.writeString(question_key);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question_type='" + question_type + '\'' +
+                ", question='" + question + '\'' +
+                ", option1='" + option1 + '\'' +
+                ", option2='" + option2 + '\'' +
+                ", option3='" + option3 + '\'' +
+                ", option4='" + option4 + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", answer='" + answer + '\'' +
+                ", question_key='" + question_key + '\'' +
+                '}';
     }
 }

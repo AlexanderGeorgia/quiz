@@ -4,23 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen"
-    android:background="@drawable/backgroung">
-    <View
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#D50C0000"/>
+    tools:context=".SeeQuestionsActivity">
 
-
-
-    <ImageView
-        android:id="@+id/splash"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_questions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splash"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
-
-    </ImageView>
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

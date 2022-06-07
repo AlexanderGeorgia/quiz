@@ -52,7 +52,7 @@ public class QuizResult extends AppCompatActivity {
             }
         });
 
-        seeResultsBtn.setOnClickListener(v -> startActivity(new Intent(QuizResult.this, StatisticsActivity.class)));
+        seeResultsBtn.setOnClickListener(view -> startActivity(new Intent(QuizResult.this, StatisticsActivity.class)));
 
     }
 

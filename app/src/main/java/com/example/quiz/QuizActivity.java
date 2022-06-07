@@ -3,15 +3,26 @@ package com.example.quiz;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,6 +46,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private String selectedOptionByUser = "";
 
+    private long startTime;
+
     TextView timer;
 
     @Override
@@ -49,14 +62,12 @@ public class QuizActivity extends AppCompatActivity {
         tv_questions = findViewById(R.id.questions);
         question = findViewById(R.id.tv_question);
 
-
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
 
         nextBtn = findViewById(R.id.nextBtn);
-
 
         final String getSelectedTopicName = getIntent().getStringExtra("selectedTopic");
 
@@ -68,7 +79,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (selectedOptionByUser.isEmpty()) {
+                if (selectedOptionByUser.isEmpty() && !questions_list.isEmpty()) {
 
                     selectedOptionByUser = option1.getText().toString();
 
@@ -87,7 +98,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (selectedOptionByUser.isEmpty()) {
+                if (selectedOptionByUser.isEmpty() && !questions_list.isEmpty()) {
 
                     selectedOptionByUser = option2.getText().toString();
 
@@ -106,7 +117,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (selectedOptionByUser.isEmpty()) {
+                if (selectedOptionByUser.isEmpty() && !questions_list.isEmpty()) {
 
                     selectedOptionByUser = option3.getText().toString();
 
@@ -125,7 +136,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (selectedOptionByUser.isEmpty()) {
+                if (selectedOptionByUser.isEmpty() && !questions_list.isEmpty()) {
 
                     selectedOptionByUser = option4.getText().toString();
 
@@ -143,7 +154,6 @@ public class QuizActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (selectedOptionByUser.isEmpty()) {
                     Toast.makeText(QuizActivity.this,
                             "Please select an option", Toast.LENGTH_SHORT).show();
@@ -153,6 +163,7 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +181,15 @@ public class QuizActivity extends AppCompatActivity {
     private void startQuiz(ArrayList<Question> questions) {
         questions_list = questions;
 
+        option1.setClickable(true);
+        option2.setClickable(true);
+        option3.setClickable(true);
+        option4.setClickable(true);
+        nextBtn.setClickable(true);
+
         startTimer(timer);
+
+        startTime = System.currentTimeMillis();
 
         tv_questions.setText((currentQuestionPosition + 1) + "/" + questions_list.size());
         question.setText(questions_list.get(0).getQuestion());
@@ -212,13 +231,37 @@ public class QuizActivity extends AppCompatActivity {
             option4.setText(questions_list.get(currentQuestionPosition).getOption4());
 
         }
-        else{
-            Intent intent = new Intent(QuizActivity.this, QuizResult.class);
-            intent.putExtra("correct", getCorrectAnswers());
-            intent.putExtra("incorrect", getInCorrectAnswers());
-            startActivity(intent);
+        else {
 
-            finish();
+            long endTime = System.currentTimeMillis();
+
+            Quiz quiz = new Quiz(questions_list, startTime, endTime, getCorrectAnswers(), getInCorrectAnswers());
+
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+            DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference("Quizzes")
+                    .child(firebaseUser.getUid());
+
+            String quizKey = quizRef.push().getKey();
+
+            quizRef.child(quizKey).setValue(quiz).addOnCompleteListener(
+                    new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Intent intent = new Intent(QuizActivity.this, QuizResult.class);
+                                intent.putExtra("correct", getCorrectAnswers());
+                                intent.putExtra("incorrect", getInCorrectAnswers());
+                                startActivity(intent);
+                                finish();
+                            }
+                            else {
+                                Toast.makeText(QuizActivity.this, "Failed. Please Try again", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
         }
 
     }
@@ -227,18 +270,22 @@ public class QuizActivity extends AppCompatActivity {
 
         quizTimer = new Timer();
 
+        totalTimeInMins = 4;
+
         quizTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(seconds == 0){
-                    totalTimeInMins--;
-                    seconds = 59;
 
-                }
-                else if (seconds == 0 && totalTimeInMins == 0){
+                Log.d("kora", "seconds = " + seconds);
+                Log.d("kora", "totalTimeInMIns = " + totalTimeInMins);
+
+                if (seconds == 0 && totalTimeInMins == 0){
 
                     quizTimer.purge();
                     quizTimer.cancel();
+
+                    //needed because of another thread
+                    Looper.prepare();
 
                     Toast.makeText(QuizActivity.this,"Time over", Toast.LENGTH_SHORT).show();
 
@@ -248,6 +295,10 @@ public class QuizActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     finish();
+                }
+                else if(seconds == 0){
+                    totalTimeInMins--;
+                    seconds = 59;
 
                 }
                 else{
@@ -263,14 +314,14 @@ public class QuizActivity extends AppCompatActivity {
                         String finalSeconds = String.valueOf(seconds);
 
                         if (finalMinutes.length() == 1){
-                            finalMinutes = "0"+finalMinutes;
+                            finalMinutes = "0" + finalMinutes;
                         }
 
                         if (finalSeconds.length() == 1){
-                            finalSeconds = "0"+finalSeconds;
+                            finalSeconds = "0" + finalSeconds;
                         }
 
-                        timerTextView.setText(finalMinutes +":"+finalSeconds);
+                        timerTextView.setText(finalMinutes + ":" +finalSeconds);
                     }
                 });
 
@@ -288,7 +339,7 @@ public class QuizActivity extends AppCompatActivity {
             final String getUserSelectedAnswer = questions_list.get(i).getAnswer();
             final String getCorrectAnswer = questions_list.get(i).getCorrectAnswer();
 
-            if(getUserSelectedAnswer.equals(getCorrectAnswer)){
+            if(Objects.equals(getUserSelectedAnswer, getCorrectAnswer)){
                 correctAnswers++;
             }
         }
@@ -303,11 +354,10 @@ public class QuizActivity extends AppCompatActivity {
 
         for (int i = 0; i< questions_list.size(); i++){
 
-
             final String getUserSelectedAnswer = questions_list.get(i).getAnswer();
             final String getCorrectAnswer = questions_list.get(i).getCorrectAnswer();
 
-            if(!getUserSelectedAnswer.equals(getCorrectAnswer)){
+            if(!Objects.equals(getUserSelectedAnswer, getCorrectAnswer)){
                 correctAnswers++;
             }
         }
@@ -345,5 +395,7 @@ public class QuizActivity extends AppCompatActivity {
             option4.setBackgroundResource(R.drawable.round_back_green10);
             option4.setTextColor(Color.WHITE);
         }
+
     }
+
 }

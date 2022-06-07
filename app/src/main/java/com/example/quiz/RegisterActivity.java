@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         User user = new User(email, uid, "");
 
         userRef = FirebaseDatabase.getInstance().getReference("Users").push();
-        user.setKey(userRef.getKey());
+        user.setUid(userRef.getKey());
 
         userRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

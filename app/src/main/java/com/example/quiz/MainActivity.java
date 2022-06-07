@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         Button stop = findViewById(R.id.stopService);
 
         start.setOnClickListener(view -> startService(new Intent(MainActivity.this, MyService.class)));
-
-
         stop.setOnClickListener(view -> stopService(new Intent(MainActivity.this, MyService.class)));
 
+        AppCompatButton btn_statistics = findViewById(R.id.btn_statistics);
+        btn_statistics.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, StatisticsActivity.class)));
 
         final LinearLayout java = findViewById(R.id.javaLayout);
         final LinearLayout php = findViewById(R.id.phpLayout);
@@ -41,15 +42,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                selectedTopicName = "java";
+                selectedTopicName = QuestionType.JAVA.toString();
 
                 java.setBackgroundResource(R.drawable.round_back_white_stroke10);
-
                 php.setBackgroundResource(R.drawable.round_back_white10);
                 html.setBackgroundResource(R.drawable.round_back_white10);
                 android.setBackgroundResource(R.drawable.round_back_white10);
-
-
             }
         });
 
@@ -57,10 +55,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                selectedTopicName = "php";
+                selectedTopicName = QuestionType.PHP.toString();
 
                 php.setBackgroundResource(R.drawable.round_back_white_stroke10);
-
                 java.setBackgroundResource(R.drawable.round_back_white10);
                 html.setBackgroundResource(R.drawable.round_back_white10);
                 android.setBackgroundResource(R.drawable.round_back_white10);
@@ -72,10 +69,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                selectedTopicName = "html";
+                selectedTopicName = QuestionType.HTML.toString();
 
                 html.setBackgroundResource(R.drawable.round_back_white_stroke10);
-
                 php.setBackgroundResource(R.drawable.round_back_white10);
                 java.setBackgroundResource(R.drawable.round_back_white10);
                 android.setBackgroundResource(R.drawable.round_back_white10);
@@ -86,10 +82,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                selectedTopicName = "android";
+                selectedTopicName = QuestionType.ANDROID.toString();
 
                 android.setBackgroundResource(R.drawable.round_back_white_stroke10);
-
                 php.setBackgroundResource(R.drawable.round_back_white10);
                 html.setBackgroundResource(R.drawable.round_back_white10);
                 java.setBackgroundResource(R.drawable.round_back_white10);
@@ -102,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (selectedTopicName.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please select the Topic", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else {
 
                     Intent intent = new Intent(MainActivity.this, QuizActivity.class);
                     intent.putExtra("selectedTopic", selectedTopicName);
